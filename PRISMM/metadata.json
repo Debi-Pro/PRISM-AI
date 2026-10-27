@@ -1,0 +1,6 @@
+{
+  "name": "PRISM — Spatial Reconstruction & Indoor Modeling",
+  "description": "Photographic reconstruction for indoor spatial modeling — turning ordinary handheld photographs into navigable, millimeter-accurate 3D digital twins.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

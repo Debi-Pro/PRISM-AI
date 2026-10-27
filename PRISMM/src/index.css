@@ -1,0 +1,373 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-deep: #05070b;
+    --bg-surface: #0a0e17;
+    --accent: #ea580c;
+    --accent-glow: rgba(234, 88, 12, 0.4);
+    --font-grotesk: 'Hanken Grotesk', -apple-system, sans-serif;
+    --font-inter: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  body {
+    background-color: var(--bg-deep);
+    color: #f1f4f9;
+    font-family: var(--font-inter);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Custom Typography & Glows */
+.font-grotesk {
+  font-family: var(--font-grotesk);
+}
+
+.font-mono-code {
+  font-family: var(--font-mono);
+}
+
+.prism-glow {
+  background: linear-gradient(135deg, #ffffff 0%, #ffbe82 40%, #f7772c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(247, 119, 44, 0.45));
+}
+
+.logo-glow {
+  text-shadow: 0 0 20px rgba(255, 138, 56, 0.5), 0 0 40px rgba(255, 120, 46, 0.25);
+}
+
+.orange-glow-btn {
+  background: linear-gradient(90deg, #ff9f43 0%, #f47320 100%);
+  box-shadow: 0 4px 20px -2px rgba(244, 115, 32, 0.4);
+  transition: all 0.2s ease-in-out;
+}
+.orange-glow-btn:hover {
+  box-shadow: 0 6px 24px 0 rgba(244, 115, 32, 0.55);
+  filter: brightness(1.05);
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #fba765 0%, #f6883c 100%);
+  transition: all 0.2s ease-in-out;
+}
+.btn-gradient:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 0 20px rgba(246, 136, 60, 0.35);
+}
+
+.glow-orange {
+  box-shadow: 0 0 25px 3px rgba(255, 125, 45, 0.38), 0 0 10px 0 rgba(255, 125, 45, 0.2);
+}
+
+/* Inside Photo Scroller for Upload Tray */
+.custom-inside-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.02);
+}
+.custom-inside-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-inside-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 9999px;
+}
+.custom-inside-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+.custom-inside-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(234, 88, 12, 0.6);
+}
+
+/* Background Grids */
+.arch-grid-matrix {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(241, 244, 249, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241, 244, 249, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  background-position: center center;
+  pointer-events: none;
+}
+
+.bg-grid-pattern {
+  background-size: 64px 64px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+
+/* Custom Sovereign Button */
+.btn-explore-sovereign {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 48px;
+  border-radius: 9999px;
+  background: #f1f4f9;
+  color: #05070b;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  text-decoration: none;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-fluid);
+  border: 1px solid #f1f4f9;
+  box-shadow: 0 0 35px rgba(241, 244, 249, 0.18);
+}
+.btn-explore-sovereign::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(234, 88, 12, 0.35), transparent);
+  transition: left 0.6s ease;
+}
+.btn-explore-sovereign:hover::before {
+  left: 100%;
+}
+.btn-explore-sovereign:hover {
+  background: #ea580c;
+  color: #ffffff;
+  border-color: #ea580c;
+  box-shadow: 0 0 50px rgba(234, 88, 12, 0.65);
+  transform: translateY(-2px);
+}
+
+/* Sunbeam & Atmospheric */
+.sunbeam {
+  position: absolute;
+  top: -20%;
+  right: 15%;
+  width: 500px;
+  height: 140%;
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.16) 0%, rgba(255, 180, 100, 0.08) 40%, transparent 75%);
+  transform: rotate(-24deg);
+  pointer-events: none;
+  filter: blur(40px);
+  animation: breatheBeam 7s infinite ease-in-out alternate;
+}
+@keyframes breatheBeam {
+  0% { opacity: 0.35; transform: rotate(-24deg) scale(0.95); }
+  100% { opacity: 0.8; transform: rotate(-21deg) scale(1.05); }
+}
+
+/* Stepper dashed line */
+.stepper-dashed-line {
+  background-image: repeating-linear-gradient(to bottom, #2a374a, #2a374a 3px, transparent 3px, transparent 7px);
+}
+
+/* Hide scrollbars for continuous horizontal slider */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.horizontal-snap-track {
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Header Nav Bar Container & Capsule Morphing Transitions */
+#top-nav-bar {
+  transition: background-color 1.6s var(--ease-fluid), border-color 1.6s var(--ease-fluid), backdrop-filter 1.6s var(--ease-fluid);
+}
+#top-nav-bar.at-terminus {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  backdrop-filter: none !important;
+  pointer-events: none;
+}
+
+#chamber-nav-pills {
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 1.6s var(--ease-fluid),
+              border-color 1.6s var(--ease-fluid),
+              box-shadow 1.6s var(--ease-fluid),
+              padding 1.6s var(--ease-fluid),
+              gap 1.6s var(--ease-fluid);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Top HUD Nav Bar & Capsule Smooth Upward/Downward Transitions */
+#top-nav-bar {
+  will-change: transform, opacity;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#chamber-nav-pills {
+  will-change: transform, opacity;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Terminus morphed state: seamless descent and morph right above "THE SPACE IS READY." */
+#chamber-nav-pills.terminus-descended {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  gap: 0.12em !important;
+  padding: 0 !important;
+  pointer-events: auto;
+}
+
+.prism-nav-letter {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: var(--font-grotesk);
+  font-weight: 500;
+  user-select: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  transition: color 0.6s var(--ease-fluid),
+              opacity 0.8s var(--ease-fluid),
+              transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+              font-size 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+              letter-spacing 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+              width 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+              height 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+              text-shadow 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Normal pill sizing */
+.prism-nav-letter.in-nav {
+  width: 44px;
+  height: 38px;
+  font-size: 15px;
+  color: #94a3b8;
+  opacity: 0.55;
+}
+.prism-nav-letter.in-nav:hover {
+  opacity: 0.9;
+  color: #ffffff;
+}
+.prism-nav-letter.in-nav.is-active {
+  opacity: 1;
+  transform: scale(1.35);
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 0 16px rgba(234, 88, 12, 0.95), 0 0 30px rgba(249, 115, 22, 0.7);
+}
+
+/* Terminus morphed lettering: monumental, glowing, centered above narrative */
+.prism-nav-letter.terminus-morphed {
+  opacity: 1 !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  font-size: clamp(3.15rem, 9.9vw, 7.65rem) !important;
+  width: auto !important;
+  height: auto !important;
+  line-height: 0.9 !important;
+  letter-spacing: 0.18em !important;
+  text-shadow: 0 0 35px rgba(255, 107, 0, 0.8), 0 0 85px rgba(234, 88, 12, 0.6), 0 0 140px rgba(249, 115, 22, 0.3) !important;
+  transform: scale(1) !important;
+  padding: 0 0.05em !important;
+}
+
+/* Terminus Aurora Halos */
+.terminus-aurora-halo {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.terminus-aurora-halo.halo-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.terminus-stage-wrapper {
+  transform: scale(0.94) translateY(30px);
+  opacity: 0.4;
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+.terminus-stage-wrapper.stage-active {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Finale narrative cascade */
+.terminus-content-cascade {
+  opacity: 0;
+  transform: translateY(120px) scale(2.8);
+  filter: blur(24px);
+  transform-origin: center top;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 1.5s cubic-bezier(0.16, 1, 0.28, 1), 
+              filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+.terminus-content-cascade.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
+}
+
+.progress-track-wrapper {
+  transition: opacity 0.8s var(--ease-fluid), transform 0.8s var(--ease-fluid);
+}
+.progress-track-wrapper.progress-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(4px) scaleX(0.98);
+}
+
+/* Smooth Page Transitions */
+@keyframes pageFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.992);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pageFadeOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.988);
+  }
+}
+
+.animate-page-enter {
+  animation: pageFadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+.animate-page-exit {
+  animation: pageFadeOutUp 0.22s cubic-bezier(0.4, 0, 1, 1) forwards;
+  will-change: opacity, transform;
+}
+
+
